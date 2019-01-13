@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="KinderGartenDS" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:jboss/datasources/KinderGartenDS</jta-data-source>
+        <class>edu.kindergarten.registration.persistence.model.KidprofileEntity</class>
+        <class>edu.kindergarten.registration.persistence.model.ProfileEntity</class>
+        <class>edu.kindergarten.registration.persistence.model.RoleEntity</class>
+        <class>edu.kindergarten.registration.persistence.model.StatusEntity</class>
+        <class>edu.kindergarten.registration.persistence.model.UserEntity</class>
+        <class>edu.kindergarten.registration.persistence.model.UserKidEntity</class>
+        <properties>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="toplink.jdbc.url" value="jdbc:mariadb://localhost:3306/kindergarten"/>
+            <property name="toplink.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/kindergarten"/>
+            <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mariadb://localhost:3306/kindergarten"/>
+            <property name="openjpa.ConnectionDriverName" value="org.mariadb.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mariadb://localhost:3306/kindergarten"/>
+            <property name="eclipselink.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>

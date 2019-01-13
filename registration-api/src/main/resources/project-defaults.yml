@@ -1,0 +1,39 @@
+swarm:
+  datasources:
+    data-sources:
+      KinderGartenDS:
+        driver-name: mariadb
+        connection-url: jdbc:mariadb://localhost:3306/kindergarten
+        user-name: root
+        password: ad9715!
+        jta: true
+        min-pool-size: 1
+        max-pool-size: 5
+        pool-prefill: true
+  logging:
+    pattern-formatters:
+      LOG_FORMATTER:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c:%L] (%t) %s%e%n"
+    periodic-rotating-file-handlers:
+      FILE:
+        file:
+          path: C:/Users/Aggelos/server.log
+        suffix: .yyyy-MM-dd
+        named-formatter: LOG_FORMATTER
+    root-logger:
+      level: INFO
+      handlers:
+        - CONSOLE
+        - FILE
+
+  mail:
+    smtp:
+      host: smtp.gmail.com
+      port: 587
+    mail-sessions:
+      GOOGLE:
+        smtp-server:
+          username: dimoange@gmail.com
+          password: k@ss@r0cksnfuck!
+          tls: true
+        from: dimoange@gmail.com
