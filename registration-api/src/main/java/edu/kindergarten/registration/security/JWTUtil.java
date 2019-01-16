@@ -84,8 +84,8 @@ public class JWTUtil {
     }
 
     public boolean verifyRefreshToken(String auth, String refreshToken, UserInfo userInfo) {
-        DecodedJWT jwt = verifyJWT(auth);
-        if (userInfo == null || jwt == null)
+        DecodedJWT jwt = JWT.decode(auth);
+        if (userInfo == null)
             return false;
         long userId = Optional.ofNullable(jwt.getClaim(CLAIM_USERID)).map(Claim::asLong).orElse(0L);
         boolean verified = userInfo.getUserId().equals(userId) && jwt.getId().equals(userInfo.getJwtId().toString());

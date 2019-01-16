@@ -14,11 +14,6 @@ import edu.kindergarten.registration.utils.PasswordUtils;
 import edu.kindergarten.registration.utils.PersistenceHelper;
 import edu.kindergarten.registration.utils.TokenUtil;
 import org.apache.commons.io.IOUtils;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -67,7 +62,7 @@ public class HelloWorldEndpoint {
 
     @POST
     @Path("/register")
-    @APIResponses(
+    /*@APIResponses(
             value = {
                     @APIResponse(
                             responseCode = "404",
@@ -81,7 +76,7 @@ public class HelloWorldEndpoint {
     @Operation(
             summary = "Get JVM system properties for particular host",
             description = "Retrieves and returns the JVM system properties from the system "
-                    + "service running on the particular host.")
+                    + "service running on the particular host.")*/
     public Response register(RegistrationRequest regRequest) {
         persistenceHelper.register(regRequest);
         return Response.ok("OK").type(MediaType.APPLICATION_JSON_TYPE).build();
@@ -109,8 +104,6 @@ public class HelloWorldEndpoint {
 
     @POST
     @Path("/auth/jwt/{refreshToken}")
-    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
-    @ValidateUser
     public Response newJwt(@HeaderParam("Authorization") String jwt, @PathParam("refreshToken") String refreshToken) {
         jwt = jwt.replaceFirst("Bearer" + " ", "");
         UserInfo userInfo = Optional.ofNullable(cacheUtil.getRefreshTokens().getIfPresent(UUID.fromString(refreshToken))).orElse(new UserInfo());
