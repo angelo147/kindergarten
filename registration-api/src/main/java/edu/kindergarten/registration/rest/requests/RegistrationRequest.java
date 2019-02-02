@@ -9,7 +9,7 @@ import java.util.List;
 public class RegistrationRequest {
     private UserEntity user;
     private List<KidprofileEntity> kidprofiles;
-    private boolean isMother;
+    private Boolean mother;
     private Role role;
 
     public UserEntity getUser() {
@@ -28,12 +28,12 @@ public class RegistrationRequest {
         this.kidprofiles = kidprofiles;
     }
 
-    public boolean isMother() {
-        return isMother;
+    public Boolean getMother() {
+        return mother;
     }
 
-    public void setMother(boolean mother) {
-        isMother = mother;
+    public void setMother(Boolean mother) {
+        this.mother = mother;
     }
 
     public Role getRole() {

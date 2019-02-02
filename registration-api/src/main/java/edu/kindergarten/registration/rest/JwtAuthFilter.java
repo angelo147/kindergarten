@@ -43,13 +43,13 @@ public class JwtAuthFilter implements ContainerRequestFilter {
                 return;
             }
             //Get userId from pathParam
-            final MultivaluedMap< String, String > pathParametersMultivaluedMap = requestContext.getUriInfo().getPathParameters();
+            /*final MultivaluedMap< String, String > pathParametersMultivaluedMap = requestContext.getUriInfo().getPathParameters();
             final List<String> userIdHeader = pathParametersMultivaluedMap.get("userId");
             if (userIdHeader == null || userIdHeader.isEmpty()) {
                 requestContext.abortWith(ACCESS_DENIED);
                 return;
             }
-            final Long userId = Long.valueOf(userIdHeader.get(0));
+            final Long userId = Long.valueOf(userIdHeader.get(0));*/
             //Get request headers
             final MultivaluedMap<String, String> headers = requestContext.getHeaders();
             //Fetch authorization header
@@ -61,7 +61,7 @@ public class JwtAuthFilter implements ContainerRequestFilter {
             }
             //Get encoded username and password
             final String jwt = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
-            if(!jwtUtil.verifyJWT(jwt, userId)) {
+            if(!jwtUtil.verifyJWT(jwt, (long) 0)) {
                 requestContext.abortWith(ACCESS_DENIED);
                 return;
             }

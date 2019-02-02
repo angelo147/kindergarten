@@ -41,7 +41,7 @@ public class JWTUtil {
             String token;
             Algorithm algorithm = Algorithm.HMAC256("itsasecret");
             token = JWT.create().withIssuedAt(insert).withNotBefore(insert).withExpiresAt(expires)
-                    .withIssuer(PUBLIC_CALLER).withClaim(CLAIM_USERID, userId)
+                    .withIssuer(TRUSTED_CALLER).withClaim(CLAIM_USERID, userId)
                     .withArrayClaim(CLAIM_ROLE, role.stream().map(Role::toString).collect(Collectors.toList()).toArray(new String[]{}))
                     .withJWTId(jti.toString())
                     .sign(algorithm);
@@ -68,14 +68,16 @@ public class JWTUtil {
         if (jwt.getIssuer().equalsIgnoreCase(PUBLIC_CALLER)) {
             cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
             return Optional.ofNullable(jwt.getClaim(CLAIM_USERID)).map(Claim::asLong).orElse(0L).equals(identifier);
-        } else
+        } else {
+            cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
             return true;
+        }
     }
 
     public DecodedJWT verifyJWT(String auth) {
         try {
             Algorithm algorithm = Algorithm.HMAC256("itsasecret");
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer(PUBLIC_CALLER).build();
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer(TRUSTED_CALLER).build();
             DecodedJWT jwt = verifier.verify(auth);
             return jwt;
         } catch (JWTVerificationException exception) {

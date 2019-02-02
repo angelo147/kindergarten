@@ -1,10 +1,11 @@
 package edu.kindergarten.registration.rest;
 
+import edu.kindergarten.registration.persistence.controllers.CalendarEventRepo;
 import edu.kindergarten.registration.persistence.controllers.TokenController;
 import edu.kindergarten.registration.messaging.Email;
 import edu.kindergarten.registration.messaging.MessageService;
 import edu.kindergarten.registration.persistence.controllers.UserController;
-import edu.kindergarten.registration.persistence.model.KidprofileEntity;
+import edu.kindergarten.registration.persistence.model.CalendarEventEntity;
 import edu.kindergarten.registration.persistence.model.UserEntity;
 import edu.kindergarten.registration.rest.requests.LoginRequest;
 import edu.kindergarten.registration.rest.requests.RegistrationRequest;
@@ -28,16 +29,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequestScoped
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
-public class HelloWorldEndpoint {
+public class KinderGartenEndpoint {
     @Inject
     @Email
     private MessageService email;
@@ -53,39 +51,47 @@ public class HelloWorldEndpoint {
     private PersistenceHelper persistenceHelper;
     @Inject
     private UserController userController;
-
-    /*@Parameter(
-            description = "The host for whom to retrieve the JVM system properties for.",
-            required = true,
-            example = "foo",
-            schema = @Schema(type = SchemaType.STRING))*/
+    @Inject
+    private CalendarEventRepo eventRepo;
 
     @POST
     @Path("/register")
-    /*@APIResponses(
-            value = {
-                    @APIResponse(
-                            responseCode = "404",
-                            description = "Missing description",
-                            content = @Content(mediaType = "text/plain")),
-                    @APIResponse(
-                            responseCode = "200",
-                            description = "JVM system properties of a particular host.",
-                            content = @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = edu.kindergarten.registration.rest.Response.class))) })
-    @Operation(
-            summary = "Get JVM system properties for particular host",
-            description = "Retrieves and returns the JVM system properties from the system "
-                    + "service running on the particular host.")*/
     public Response register(RegistrationRequest regRequest) {
         persistenceHelper.register(regRequest);
-        return Response.ok("OK").type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(ResponseCode.OK).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
-    @Path("/user")
-    public Response getUser() {
-        return Response.ok(userController.findById(9)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    @Path("/user/all")
+    @RolesAllowed({"SUPERVISOR"})
+    @ValidateUser
+    public Response getUsers() {
+        return Response.ok(userController.findAll()).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @GET
+    @Path("/user/{userid}")
+    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response getUser(@PathParam("userid") int userid) {
+        return Response.ok(userController.findById(userid)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/event")
+    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response newEvent(CalendarEventEntity calendarEventEntity) {
+        eventRepo.saveEvent(calendarEventEntity);
+        return Response.ok(ResponseCode.OK).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @GET
+    @Path("/event/{userid}")
+    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response getUserEvent(@PathParam("userid") int userid) {
+        return Response.ok(eventRepo.findByUserId(userid)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @POST
@@ -113,13 +119,19 @@ public class HelloWorldEndpoint {
     }
 
     @GET
-    @Path("/token")
-    public Response generateToken() {
-        return Response.ok(tokenUtil.generateToken("dimoange@gmail.com")).type(MediaType.APPLICATION_JSON_TYPE).build();
+    @Path("/token/{userid}")
+    public Response generateToken(@PathParam("userid") int userid) {
+        return Response.ok(tokenUtil.generateToken(userController.findById(userid).getProfileid().getEmail(), userid)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
-    @Path("/document/{userId}/{id}")
+    @Path("/validate/token/{token}")
+    public Response validateToken(@PathParam("token")String token) {
+        return Response.ok(tokenUtil.validateToken(token)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @GET
+    @Path("/document/{id}")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
     @ValidateUser
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
@@ -136,7 +148,7 @@ public class HelloWorldEndpoint {
     }
 
     @POST
-    @Path("/document/{userId}/{profileid}")
+    @Path("/document/{profileid}")
     @RolesAllowed({"PARENT", "SUPERVISOR"})
     @ValidateUser
     @Consumes(MediaType.MULTIPART_FORM_DATA)

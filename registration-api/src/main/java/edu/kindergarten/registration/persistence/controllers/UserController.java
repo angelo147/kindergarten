@@ -20,6 +20,10 @@ public class UserController {
     public UserEntity createUser(UserEntity user) {
         return em.merge(user);
     }
+
+    public void flush() {
+        em.flush();
+    }
     public void createAddr(Address address) {
         em.persist(address);
     }

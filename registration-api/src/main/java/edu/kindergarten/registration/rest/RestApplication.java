@@ -11,7 +11,7 @@ import java.util.Set;
 public class RestApplication extends Application {
     /*public Set<Class<?>> getClasses() {
         Set<Class<?>> s = new HashSet<>();
-        s.add(HelloWorldEndpoint.class);
+        s.add(KinderGartenEndpoint.class);
         s.add(JwtAuthFilter.class);
         return s;
     }*/

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "status", schema = "kindergarten", catalog = "")
+@NamedQuery(name = "RoleEntity.findAll", query = "SELECT r FROM RoleEntity r")
 public class StatusEntity {
     private int statusid;
     private String status;

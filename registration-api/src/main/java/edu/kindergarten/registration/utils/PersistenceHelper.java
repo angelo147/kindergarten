@@ -1,7 +1,10 @@
 package edu.kindergarten.registration.utils;
 
+import edu.kindergarten.registration.messaging.Email;
+import edu.kindergarten.registration.messaging.MessageService;
 import edu.kindergarten.registration.persistence.controllers.KidController;
 import edu.kindergarten.registration.persistence.controllers.RoleController;
+import edu.kindergarten.registration.persistence.controllers.StatusController;
 import edu.kindergarten.registration.persistence.controllers.UserController;
 import edu.kindergarten.registration.persistence.model.*;
 import edu.kindergarten.registration.rest.Role;
@@ -24,35 +27,11 @@ public class PersistenceHelper {
     private KidController kidController;
     @Inject
     private RoleController roleController;
-
-    public void register() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername("test");
-        String salt = PasswordUtils.getSalt(30);
-        userEntity.setPassword(PasswordUtils.generateSecurePassword("ad9715!", salt));
-        userEntity.setSalt(salt);
-        ProfileEntity father = new ProfileEntity(); father.setName("test");
-        ProfileEntity kid = new ProfileEntity(); kid.setName("test");
-        userEntity.setProfileid(father);
-        //em.persist(father);
-        //registrationRequest.getUserEntity().setProfileid(registrationRequest.getFatherProfile());
-        KidprofileEntity kidprofileEntity = new KidprofileEntity();
-        kidprofileEntity.setFatherprofileid(father);
-        kidprofileEntity.setMotherprofileid(father);
-        kidprofileEntity.setGurdianprofileid(father);
-        kidprofileEntity.setKidprofileid(kid);
-
-        /*UserKidEntity userKidEntity = new UserKidEntity();
-        userKidEntity.setUserid(userEntity); userKidEntity.setKidid(kidprofileEntity);*/
-
-        userEntity.getUserkids().add(kidprofileEntity);
-
-        RoleEntity role = roleController.findAll().stream().filter(att -> Role.TEACHER.toString().equalsIgnoreCase(att.getRole())).findFirst().orElse(null);
-        userEntity.getRoles().add(role);
-
-        //kidController.createKid(kidprofileEntity);
-        userController.createUser(userEntity);
-    }
+    @Inject
+    private StatusController statusController;
+    @Inject
+    @Email
+    private MessageService email;
 
     public void register(RegistrationRequest registrationRequest) {
         UserEntity user = registrationRequest.getUser();
@@ -61,15 +40,17 @@ public class PersistenceHelper {
         user.setPassword(PasswordUtils.generateSecurePassword(password, salt));
         user.setSalt(salt);
         registrationRequest.getUser().getAddress().setUser(user);
-        if (registrationRequest.isMother()) {
+        if (registrationRequest.getMother()) {
             user.setProfileid(registrationRequest.getKidprofiles().stream().findAny().orElse(null).getMotherprofileid());
         } else {
             user.setProfileid(registrationRequest.getKidprofiles().stream().findAny().orElse(null).getFatherprofileid());
         }
         user.getUserkids().addAll(registrationRequest.getKidprofiles());
         RoleEntity role = roleController.findAll().stream().filter(att -> registrationRequest.getRole().toString().equalsIgnoreCase(att.getRole())).findFirst().orElse(null);
+        StatusEntity status = statusController.findAll().stream().filter(att -> "preactive".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
         user.getRoles().add(role);
-        userController.createUser(user);
+        user.setStatusid(status);
+        email.sendMessage(user.getProfileid().getEmail(), userController.createUser(user).getUserid());
     }
 
     public void updateDocument(int profileid, String title, byte[] file) {

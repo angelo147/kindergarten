@@ -37,3 +37,6 @@ swarm:
           password: k@ss@r0cksnfuck!
           tls: true
         from: dimoange@gmail.com
+notification:
+  hours: 16
+  minutes: 48
