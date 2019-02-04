@@ -66,6 +66,8 @@ public class KinderGartenEndpoint {
 
     @POST
     @Path("/kid/assign/{userid}")
+    @RolesAllowed({"SUPERVISOR"})
+    @ValidateUser
     public Response assignkid(List<Integer> ids, @PathParam("userid") int userid) {
         List<KidprofileEntity> kids = ids.parallelStream().map(id->kidController.findById(id)).collect(Collectors.toList());
         UserEntity user = userController.findById(userid);
@@ -76,12 +78,16 @@ public class KinderGartenEndpoint {
 
     @PUT
     @Path("/user")
+    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
+    @ValidateUser
     public Response updateUser(UserEntity user) {
         return Response.ok(userController.update(user)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @PUT
     @Path("/user/profile")
+    @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
+    @ValidateUser
     public Response updateProfile(ProfileEntity profile) {
         userController.updateProfile(profile);
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
