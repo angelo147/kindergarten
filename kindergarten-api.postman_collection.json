@@ -1,0 +1,1168 @@
+{
+	"info": {
+		"_postman_id": "1dc8227e-f71a-47a1-bc60-96c26d5b33d4",
+		"name": "kindergarten-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"terminator\",\n\t\"password\":\"secret\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"terminator\",\n\t\"password\":\"secret\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:07:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "995"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\",\n    \"accessToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDI4NjcsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjAzMTY3LCJpYXQiOjE1NDkyMDI4NjcsInVzZXJJZCI6MzAsImp0aSI6IjUyNmIwMjhiLWVmMjQtNDE3ZC05MjdhLWUxNGFkZTIxMTI2OSJ9.ZIDFQNiKhyUBLi1vLpUIIO9Nw3Ct7u2ATfVO-Jix2P0\",\n    \"accessTokenType\": \"Bearer\",\n    \"refreshToken\": \"e9a095ab-5fab-4c36-acb2-ec925a928dfc\",\n    \"refreshTokenExpires\": 1549203767,\n    \"user\": {\n        \"userid\": 30,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 61,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 1,\n            \"status\": \"active\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 19,\n                \"fatherprofileid\": {\n                    \"profileid\": 61,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 64,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 62,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 63,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": [\n                    {\n                        \"documentId\": 20,\n                        \"title\": \"License.txt\"\n                    }\n                ]\n            }\n        ],\n        \"address\": {\n            \"addressId\": 5,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"primaryProfile\":\"FATHER\",\n\t\"role\":\"PARENT\",\n\t\"user\":{\n\t\"username\":\"terminator8\",\n\t\"password\":\"secret\",\n\t\"address\":{\n\t\t\"street\":\"Deli\"\n\t}\n\t},\n\t\"kidprofiles\": [{\n\t\t\"fatherprofileid\":{\n\t\t\t\"name\":\"Σπυρος\",\n\t\t\t\"email\":\"dimoange@gmail.com\"\n\t\t},\n\t\t\"motherprofileid\":{\n\t\t\t\"name\":\"Σουλα\",\n\t\t\t\"email\":\"dimoange@gmail.com\"\n\t\t},\n\t\t\"gurdianprofileid\":{\n\t\t\t\"name\":\"Μαρια\"\n\t\t},\n\t\t\"kidprofileid\":{\n\t\t\t\"name\":\"Γιωργος\"\n\t\t}\n\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"mother\":true,\n\t\"role\":\"PARENT\",\n\t\"user\":{\n\t\"username\":\"terminator8\",\n\t\"password\":\"secret\",\n\t\"address\":{\n\t\t\"street\":\"Deli\"\n\t}\n\t},\n\t\"kidprofiles\": [{\n\t\t\"fatherprofileid\":{\n\t\t\t\"name\":\"Σπυρος\",\n\t\t\t\"email\":\"dimoange@gmail.com\"\n\t\t},\n\t\t\"motherprofileid\":{\n\t\t\t\"name\":\"Σουλα\",\n\t\t\t\"email\":\"dimoange@gmail.com\"\n\t\t},\n\t\t\"gurdianprofileid\":{\n\t\t\t\"name\":\"Μαρια\"\n\t\t},\n\t\t\"kidprofileid\":{\n\t\t\t\"name\":\"Γιωργος\"\n\t\t}\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:09:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add registration document",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDMwODIsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjAzMzgyLCJpYXQiOjE1NDkyMDMwODIsInVzZXJJZCI6MzAsImp0aSI6IjIxNmY5ZDNhLTJhOGMtNDYzOC1iYmJiLWU3YzRiYjNhODAxYyJ9.aioRm2Fj2dW5EWfhAHDTNcQplLCkwrXJyLR1HWsO83w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/document/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"document",
+						"20"
+					]
+				},
+				"description": "param is kidprofileid"
+			},
+			"response": [
+				{
+					"name": "add registration document",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachment",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/document/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"document",
+								"20"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:11:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get registration document",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDMyNDQsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjAzNTQ0LCJpYXQiOjE1NDkyMDMyNDQsInVzZXJJZCI6MzAsImp0aSI6ImU0N2QyNTg1LWYyYzItNDUwNS1hNzgwLTlhODFlMTgxNTZmOSJ9.5tp9IBMnBxEZxGPHPrMJa5eXW7UVZOFpu1ehPZ-kSGo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/document/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"document",
+						"21"
+					]
+				},
+				"description": "param is docid"
+			},
+			"response": [
+				{
+					"name": "get registration document",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/document/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"document",
+								"21"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "raw",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:14:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/octet-stream"
+						},
+						{
+							"key": "Content-Length",
+							"value": "836"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "select season from athlete_events group by season;\r\n \r\n select distinct year from athlete_events;\r\n \r\n select count(id) from athlete_events where season='Summer' group by year;\r\n \r\n select a.*,b.season_id,c.year_id from athlete_events a\r\n left join DimSeason b on a.season=b.season\r\nleft join DimYear$ c on a.year=c.year;\r\n \r\n select a.*,b.season_id,c.year_id from FactPartitipation a \r\nleft join DimSeason b on a.season=b.season\r\nleft join DimYear$ c on a.year=c.year;\r\n\r\n\r\nselect * from FactPartitipation$ where NOC is null or Noc not in(select noc from noc_regions);\r\nselect * from noc_regions where region is null;\r\n\r\nselect distinct Medal from FactPartitipation$;\r\nselect year,noc,count(noc) from FactPartitipation$ where Medal='Gold' group by noc, year;"
+				}
+			]
+		},
+		{
+			"name": "validate token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/validate/token/13b81966-5739-4f9e-8d26-1636554a0dbe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"validate",
+						"token",
+						"13b81966-5739-4f9e-8d26-1636554a0dbe"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "validate token",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/validate/token/13b81966-5739-4f9e-8d26-1636554a0dbe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"validate",
+								"token",
+								"13b81966-5739-4f9e-8d26-1636554a0dbe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:15:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "54"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 600,\n    \"responseMessage\": \"Invalid Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "refresh jwt",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDMyNDQsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjAzNTQ0LCJpYXQiOjE1NDkyMDMyNDQsInVzZXJJZCI6MzAsImp0aSI6ImU0N2QyNTg1LWYyYzItNDUwNS1hNzgwLTlhODFlMTgxNTZmOSJ9.5tp9IBMnBxEZxGPHPrMJa5eXW7UVZOFpu1ehPZ-kSGo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/jwt/5ba31aa1-993b-4e6c-af32-83fcdbdf8f3c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"jwt",
+						"5ba31aa1-993b-4e6c-af32-83fcdbdf8f3c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "refresh jwt",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/jwt/5ba31aa1-993b-4e6c-af32-83fcdbdf8f3c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"jwt",
+								"5ba31aa1-993b-4e6c-af32-83fcdbdf8f3c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:20:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "453"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\",\n    \"accessToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDM2MDAsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjAzOTAwLCJpYXQiOjE1NDkyMDM2MDAsInVzZXJJZCI6MzAsImp0aSI6ImVjZDEwMGQ3LWNjOWYtNDkxZC1iMGVjLWZkNmJiNTJhNWU1ZiJ9.VTOHCymza0sGZPd9abKWkJ8wcntYq3MO64k2bJKtQtw\",\n    \"accessTokenType\": \"Bearer\",\n    \"refreshToken\": \"5ba31aa1-993b-4e6c-af32-83fcdbdf8f3c\",\n    \"refreshTokenExpires\": 1549204500\n}"
+				}
+			]
+		},
+		{
+			"name": "add calendar event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDM5MTUsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjA0MjE1LCJpYXQiOjE1NDkyMDM5MTUsInVzZXJJZCI6MzAsImp0aSI6IjM4YmZmYWU5LTQ3ZjgtNDcwNC04MTJlLWQxNzc3MmU4YWY4ZSJ9.Pe8PSWQgRvBnqkVB2_TCRxtcHCBQXmehqAiYkh9MyLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\": \"REG_MEETING\",\n\t\"contact\": \"lalakis@gmail.com\",\n\t\"eventDate\": 1549114280221,\n\t\"userid\": 49\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"event"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add calendar event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"REG_MEETING\",\n\t\"contact\": \"lalakis@gmail.com\",\n\t\"eventDate\": 1549114280221,\n\t\"userid\": 49\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/event",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"event"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:25:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get all user events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQwMzgsInJvbGUiOlsiUEFSRU5UIl0sImlzcyI6IlRSVVNURURfQ0FMTEVSIiwiZXhwIjoxNTQ5MjA0MzM4LCJpYXQiOjE1NDkyMDQwMzgsInVzZXJJZCI6MzAsImp0aSI6IjZmZWRkOTI1LWVlOTUtNGI4Zi04MWEyLTY0N2E3YzUzYmI4OSJ9.zM58TSyCLLf1swYemBsjHb8nqBPcgX3HaPtjWMGCKUk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/event/49",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"event",
+						"49"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all user events",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/event/49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"event",
+								"49"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:27:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "130"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 5,\n        \"eventDate\": 1549114280000,\n        \"type\": \"REG_MEETING\",\n        \"active\": true,\n        \"contact\": \"lalakis@gmail.com\",\n        \"notified\": false,\n        \"userid\": 49\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"all"
+					]
+				},
+				"description": "only supervisor"
+			},
+			"response": [
+				{
+					"name": "get all users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Feb 2019 14:34:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13416"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"userid\": 1,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": [],\n        \"address\": {\n            \"addressId\": 1,\n            \"street\": \"deli\",\n            \"streetNumber\": 90,\n            \"region\": \"piraeus\",\n            \"postcode\": \"18534\",\n            \"phoneNumber\": \"2105555555\"\n        }\n    },\n    {\n        \"userid\": 2,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": []\n    },\n    {\n        \"userid\": 3,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": []\n    },\n    {\n        \"userid\": 4,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": []\n    },\n    {\n        \"userid\": 5,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": []\n    },\n    {\n        \"userid\": 6,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": []\n    },\n    {\n        \"userid\": 7,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": [],\n        \"address\": {\n            \"addressId\": 2,\n            \"street\": \"teststreet\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 9,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 1,\n            \"status\": \"active\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 1,\n                \"fatherprofileid\": {\n                    \"profileid\": 10,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 10,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 10,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 11,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 17,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": [\n            {\n                \"id\": 7,\n                \"fatherprofileid\": {\n                    \"profileid\": 24,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 24,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 24,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 25,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 18,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": [\n            {\n                \"id\": 8,\n                \"fatherprofileid\": {\n                    \"profileid\": 26,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 26,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 26,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 27,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 20,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 3,\n                \"role\": \"TEACHER\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 10,\n                \"fatherprofileid\": {\n                    \"profileid\": 30,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 30,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 30,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 31,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 21,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [],\n        \"userkids\": [\n            {\n                \"id\": 11,\n                \"fatherprofileid\": {\n                    \"profileid\": 32,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 32,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 32,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 33,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 23,\n        \"username\": \"test\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 3,\n                \"role\": \"TEACHER\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 12,\n                \"fatherprofileid\": {\n                    \"profileid\": 34,\n                    \"name\": \"test\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 34,\n                    \"name\": \"test\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 34,\n                    \"name\": \"test\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 35,\n                    \"name\": \"test\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 24,\n        \"username\": \"joe\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 3,\n                \"role\": \"TEACHER\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 13,\n                \"fatherprofileid\": {\n                    \"profileid\": 36\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 39\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 37\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 38\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 25,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 14,\n                \"fatherprofileid\": {\n                    \"profileid\": 40,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 43,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 41,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 42,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 26,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 15,\n                \"fatherprofileid\": {\n                    \"profileid\": 44,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 47,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 45,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 46,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ]\n    },\n    {\n        \"userid\": 28,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 17,\n                \"fatherprofileid\": {\n                    \"profileid\": 52,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 55,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 53,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 54,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 3,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 29,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 40,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 18,\n                \"fatherprofileid\": {\n                    \"profileid\": 56,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 59,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 57,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 58,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 4,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 30,\n        \"username\": \"terminator\",\n        \"profileid\": {\n            \"profileid\": 61,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 1,\n            \"status\": \"active\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 19,\n                \"fatherprofileid\": {\n                    \"profileid\": 61,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 64,\n                    \"name\": \"Σουλα\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 62,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 63,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": [\n                    {\n                        \"documentId\": 20,\n                        \"title\": \"License.txt\"\n                    }\n                ]\n            }\n        ],\n        \"address\": {\n            \"addressId\": 5,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 31,\n        \"username\": \"terminator6\",\n        \"profileid\": {\n            \"profileid\": 65,\n            \"name\": \"Σπυρος\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"userkids\": [\n            {\n                \"id\": 20,\n                \"fatherprofileid\": {\n                    \"profileid\": 65,\n                    \"name\": \"Σπυρος\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 68,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 66,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 67,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": [\n                    {\n                        \"documentId\": 21,\n                        \"title\": \"\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd \\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd \\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd.txt\"\n                    },\n                    {\n                        \"documentId\": 22,\n                        \"title\": \"\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd \\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd \\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd.txt\"\n                    }\n                ]\n            }\n        ],\n        \"address\": {\n            \"addressId\": 6,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 37,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 89,\n            \"name\": \"Σπυρος\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 26,\n                \"fatherprofileid\": {\n                    \"profileid\": 89,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 92,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 90,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 91,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 12,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 38,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 93,\n            \"name\": \"Σπυρος\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 27,\n                \"fatherprofileid\": {\n                    \"profileid\": 93,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 96,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 94,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 95,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 13,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 39,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 97,\n            \"name\": \"Σπυρος\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 28,\n                \"fatherprofileid\": {\n                    \"profileid\": 97,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 100,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 98,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 99,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 14,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 40,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 101,\n            \"name\": \"Σπυρος\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 29,\n                \"fatherprofileid\": {\n                    \"profileid\": 101,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 104,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 102,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 103,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 15,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 41,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 105,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 1,\n            \"status\": \"active\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 30,\n                \"fatherprofileid\": {\n                    \"profileid\": 106,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 105,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 107,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 108,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 16,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 42,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 109,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 31,\n                \"fatherprofileid\": {\n                    \"profileid\": 110,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 109,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 111,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 112,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 17,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 43,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 113,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 32,\n                \"fatherprofileid\": {\n                    \"profileid\": 114,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 113,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 115,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 116,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 18,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 44,\n        \"username\": \"terminator7\",\n        \"profileid\": {\n            \"profileid\": 117,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 33,\n                \"fatherprofileid\": {\n                    \"profileid\": 118,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 117,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 119,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 120,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 19,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 46,\n        \"username\": \"terminator8\",\n        \"profileid\": {\n            \"profileid\": 125,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 35,\n                \"fatherprofileid\": {\n                    \"profileid\": 126,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 125,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 127,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 128,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 21,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 47,\n        \"username\": \"terminator8\",\n        \"profileid\": {\n            \"profileid\": 129,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 36,\n                \"fatherprofileid\": {\n                    \"profileid\": 130,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 129,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 131,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 132,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 22,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 48,\n        \"username\": \"terminator8\",\n        \"profileid\": {\n            \"profileid\": 133,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 37,\n                \"fatherprofileid\": {\n                    \"profileid\": 134,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 133,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 135,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 136,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 23,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    },\n    {\n        \"userid\": 49,\n        \"username\": \"terminator8\",\n        \"profileid\": {\n            \"profileid\": 137,\n            \"name\": \"Σουλα\",\n            \"email\": \"dimoange@gmail.com\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1,\n                \"role\": \"PARENT\"\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2,\n            \"status\": \"preactive\"\n        },\n        \"userkids\": [\n            {\n                \"id\": 38,\n                \"fatherprofileid\": {\n                    \"profileid\": 138,\n                    \"name\": \"Σπυρος\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"motherprofileid\": {\n                    \"profileid\": 137,\n                    \"name\": \"Σουλα\",\n                    \"email\": \"dimoange@gmail.com\"\n                },\n                \"gurdianprofileid\": {\n                    \"profileid\": 139,\n                    \"name\": \"Μαρια\"\n                },\n                \"kidprofileid\": {\n                    \"profileid\": 140,\n                    \"name\": \"Γιωργος\"\n                },\n                \"kidDocuments\": []\n            }\n        ],\n        \"address\": {\n            \"addressId\": 24,\n            \"street\": \"Deli\",\n            \"streetNumber\": 0\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "send email with attachment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\"dimoange@gmail.com\",\n\"tsiri@mailinator.com\"\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/send/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"send",
+						"test"
+					]
+				},
+				"description": "list of emails and type(filename)\nestw ekdromi.pdf type=ekdromi"
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"userid\": 30,\n        \"username\": \"terminatorr\",\n        \"profileid\": {\n            \"profileid\": 61,\n            \"name\": \"Σπυροdς\"\n        },\n        \"roles\": [\n            {\n                \"roleid\": 1\n            }\n        ],\n        \"statusid\": {\n            \"statusid\": 2\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n                    \"profileid\": 144,\n                    \"name\": \"'Αγγελοςs\"\n                }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign kids to teacher",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n 18,\n 20\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/kid/assign/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kid",
+						"assign",
+						"50"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
