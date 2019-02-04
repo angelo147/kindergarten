@@ -9,7 +9,7 @@ import java.util.List;
 public class RegistrationRequest {
     private UserEntity user;
     private List<KidprofileEntity> kidprofiles;
-    private Boolean mother;
+    private PrimaryProfile primaryProfile;
     private Role role;
 
     public UserEntity getUser() {
@@ -28,19 +28,24 @@ public class RegistrationRequest {
         this.kidprofiles = kidprofiles;
     }
 
-    public Boolean getMother() {
-        return mother;
-    }
-
-    public void setMother(Boolean mother) {
-        this.mother = mother;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public PrimaryProfile getPrimaryProfile() {
+        return primaryProfile;
+    }
+
+    public void setPrimaryProfile(PrimaryProfile primaryProfile) {
+        this.primaryProfile = primaryProfile;
+    }
+
+    public enum PrimaryProfile
+    {
+        FATHER, MOTHER, GURDIAN;
     }
 }

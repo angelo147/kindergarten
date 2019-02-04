@@ -48,7 +48,7 @@ public class NotificationsTimer {
         List<CalendarEventEntity> results = eventRepo.findNext();
         results.parallelStream().forEach(clevent -> {
             log.info(clevent.getId() + clevent.getContact());
-            event.fire(new NotificationEvent(clevent.getContact(), email));
+            event.fire(new NotificationEvent(clevent.getContact(), clevent.getEventDate(), email));
             clevent.setNotified(true);
             eventRepo.saveEvent(clevent);
         });

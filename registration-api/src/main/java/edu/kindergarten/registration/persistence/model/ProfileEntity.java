@@ -1,6 +1,7 @@
 package edu.kindergarten.registration.persistence.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "profile", schema = "kindergarten", catalog = "")
@@ -11,6 +12,8 @@ public class ProfileEntity {
     private String profession;
     private String mobilenumber;
     private String email;
+    private Date birthDate;
+    private String religion;
 
     @Id
     @Column(name = "profileid")
@@ -71,6 +74,27 @@ public class ProfileEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Basic
+    @Column(name = "birthdate")
+    @Temporal(TemporalType.DATE)
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Basic
+    @Column(name = "religion")
+    public String getReligion() {
+        return religion;
+    }
+
+    public void setReligion(String religion) {
+        this.religion = religion;
     }
 
     @Override

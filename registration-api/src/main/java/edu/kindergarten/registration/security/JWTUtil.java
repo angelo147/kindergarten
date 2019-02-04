@@ -66,10 +66,10 @@ public class JWTUtil {
         if (cacheUtil.getInvalidatedJwt().getIfPresent(jwt.getId()) != null)
             return false;
         if (jwt.getIssuer().equalsIgnoreCase(PUBLIC_CALLER)) {
-            cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
+            //cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
             return Optional.ofNullable(jwt.getClaim(CLAIM_USERID)).map(Claim::asLong).orElse(0L).equals(identifier);
         } else {
-            cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
+            //cacheUtil.getInvalidatedJwt().put(jwt.getId(), jwt.getExpiresAt().getTime());
             return true;
         }
     }

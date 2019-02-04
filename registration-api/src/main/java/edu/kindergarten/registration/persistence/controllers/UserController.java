@@ -1,6 +1,7 @@
 package edu.kindergarten.registration.persistence.controllers;
 
 import edu.kindergarten.registration.persistence.model.Address;
+import edu.kindergarten.registration.persistence.model.ProfileEntity;
 import edu.kindergarten.registration.persistence.model.UserEntity;
 import org.jboss.logging.Logger;
 
@@ -66,5 +67,32 @@ public class UserController {
         }
         log.infov("Found {0} UserEntity relationships!", user);
         return user;
+    }
+
+    public UserEntity update(UserEntity user) {
+        UserEntity old = findById(user.getUserid());
+        if (user.getStatusid() != null)
+            old.setStatusid(user.getStatusid());
+        if (user.getUsername() != null)
+            old.setUsername(user.getUsername());
+        return old;
+    }
+
+    public void updateProfile(ProfileEntity profile) {
+        ProfileEntity old = em.find(ProfileEntity.class, profile.getProfileid());
+        if (profile.getBirthDate() != null)
+            old.setBirthDate(profile.getBirthDate());
+        if (profile.getEmail() != null)
+            old.setEmail(profile.getEmail());
+        if (profile.getMobilenumber() != null)
+            old.setMobilenumber(profile.getMobilenumber());
+        if (profile.getName() != null)
+            old.setName(profile.getName());
+        if (profile.getProfession() != null)
+            old.setProfession(profile.getProfession());
+        if (profile.getReligion() != null)
+            old.setReligion(profile.getReligion());
+        if (profile.getSurname() != null)
+            old.setSurname(profile.getSurname());
     }
 }

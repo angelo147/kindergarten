@@ -6,6 +6,7 @@ import edu.kindergarten.registration.persistence.controllers.UserController;
 import edu.kindergarten.registration.persistence.model.StatusEntity;
 import edu.kindergarten.registration.persistence.model.Token;
 import edu.kindergarten.registration.persistence.model.UserEntity;
+import edu.kindergarten.registration.rest.JwtResponse;
 import edu.kindergarten.registration.rest.Response;
 import edu.kindergarten.registration.rest.ResponseCode;
 
@@ -58,11 +59,11 @@ public class TokenUtil {
             token.setVerifyDate(new Date());
             token.setActive(false);
             controller.updateToken(token);
-            StatusEntity status = statusController.findAll().stream().filter(att -> "active".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
-            UserEntity user = userController.findById(token.getUserId());
-            user.setStatusid(status);
-            userController.createUser(user);
-            return new Response(ResponseCode.OK);
+            //StatusEntity status = statusController.findAll().stream().filter(att -> "active".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
+            //UserEntity user = userController.findById(token.getUserId());
+            //user.setStatusid(status);
+            //userController.createUser(user);
+            return new JwtResponse(ResponseCode.OK, token.getUserId());
         } else
             return new Response(ResponseCode.INVTOKEN);
     }

@@ -1,11 +1,14 @@
 package edu.kindergarten.registration.rest;
 
 import edu.kindergarten.registration.persistence.controllers.CalendarEventRepo;
+import edu.kindergarten.registration.persistence.controllers.KidController;
 import edu.kindergarten.registration.persistence.controllers.TokenController;
 import edu.kindergarten.registration.messaging.Email;
 import edu.kindergarten.registration.messaging.MessageService;
 import edu.kindergarten.registration.persistence.controllers.UserController;
 import edu.kindergarten.registration.persistence.model.CalendarEventEntity;
+import edu.kindergarten.registration.persistence.model.KidprofileEntity;
+import edu.kindergarten.registration.persistence.model.ProfileEntity;
 import edu.kindergarten.registration.persistence.model.UserEntity;
 import edu.kindergarten.registration.rest.requests.LoginRequest;
 import edu.kindergarten.registration.rest.requests.RegistrationRequest;
@@ -40,7 +43,7 @@ public class KinderGartenEndpoint {
     @Email
     private MessageService email;
     @Inject
-    private TokenController controller;
+    private KidController kidController;
     @Inject
     private TokenUtil tokenUtil;
     @Inject
@@ -58,7 +61,39 @@ public class KinderGartenEndpoint {
     @Path("/register")
     public Response register(RegistrationRequest regRequest) {
         persistenceHelper.register(regRequest);
-        return Response.ok(ResponseCode.OK).type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/kid/assign/{userid}")
+    public Response assignkid(List<Integer> ids, @PathParam("userid") int userid) {
+        List<KidprofileEntity> kids = ids.parallelStream().map(id->kidController.findById(id)).collect(Collectors.toList());
+        UserEntity user = userController.findById(userid);
+        user.getUserkids().addAll(kids);
+        userController.createUser(user);
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @PUT
+    @Path("/user")
+    public Response updateUser(UserEntity user) {
+        return Response.ok(userController.update(user)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @PUT
+    @Path("/user/profile")
+    public Response updateProfile(ProfileEntity profile) {
+        userController.updateProfile(profile);
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/send/{type}")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response sendMessage(List<String> emails, @PathParam("type") String type) {
+        email.sendMessage(emails, type);
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
@@ -83,7 +118,7 @@ public class KinderGartenEndpoint {
     @ValidateUser
     public Response newEvent(CalendarEventEntity calendarEventEntity) {
         eventRepo.saveEvent(calendarEventEntity);
-        return Response.ok(ResponseCode.OK).type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
@@ -105,7 +140,7 @@ public class KinderGartenEndpoint {
             resp.setUser(user);
             return Response.ok(resp).type(MediaType.APPLICATION_JSON_TYPE).build();
         }
-        return Response.status(Response.Status.UNAUTHORIZED).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new edu.kindergarten.registration.rest.Response(ResponseCode.LOGINFAILED)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @POST
@@ -115,7 +150,7 @@ public class KinderGartenEndpoint {
         UserInfo userInfo = Optional.ofNullable(cacheUtil.getRefreshTokens().getIfPresent(UUID.fromString(refreshToken))).orElse(new UserInfo());
         JwtResponse jwtResponse = jwtUtil.verifyRefreshToken(jwt, refreshToken, userInfo) ? jwtUtil.generateJWT(userInfo.getUserId(), userInfo.getRole(), refreshToken) : null;
         return jwtResponse!=null ? Response.ok(jwtResponse).type(MediaType.APPLICATION_JSON_TYPE).build()
-        : Response.ok("Fuck you!").type(MediaType.APPLICATION_JSON_TYPE).build();
+        : Response.status(Response.Status.UNAUTHORIZED).entity(new edu.kindergarten.registration.rest.Response(ResponseCode.LOGINFAILED)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
@@ -165,7 +200,7 @@ public class KinderGartenEndpoint {
                         null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
                 persistenceHelper.updateDocument(profileid, fileName, bytes);
-                return Response.status(200).entity("Uploaded file name : " + fileName)
+                return Response.status(200).entity(new edu.kindergarten.registration.rest.Response(ResponseCode.OK))
                         .build();
             } catch (Exception e) {
                 e.printStackTrace();

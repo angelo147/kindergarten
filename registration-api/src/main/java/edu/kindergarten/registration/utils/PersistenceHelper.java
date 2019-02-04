@@ -40,12 +40,13 @@ public class PersistenceHelper {
         user.setPassword(PasswordUtils.generateSecurePassword(password, salt));
         user.setSalt(salt);
         registrationRequest.getUser().getAddress().setUser(user);
-        if (registrationRequest.getMother()) {
+        if (registrationRequest.getPrimaryProfile() == RegistrationRequest.PrimaryProfile.MOTHER)
             user.setProfileid(registrationRequest.getKidprofiles().stream().findAny().orElse(null).getMotherprofileid());
-        } else {
+        else if (registrationRequest.getPrimaryProfile() == RegistrationRequest.PrimaryProfile.FATHER)
             user.setProfileid(registrationRequest.getKidprofiles().stream().findAny().orElse(null).getFatherprofileid());
-        }
-        user.getUserkids().addAll(registrationRequest.getKidprofiles());
+        else if (registrationRequest.getPrimaryProfile() == RegistrationRequest.PrimaryProfile.GURDIAN)
+            user.setProfileid(registrationRequest.getKidprofiles().stream().findAny().orElse(null).getGurdianprofileid());
+            user.getUserkids().addAll(registrationRequest.getKidprofiles());
         RoleEntity role = roleController.findAll().stream().filter(att -> registrationRequest.getRole().toString().equalsIgnoreCase(att.getRole())).findFirst().orElse(null);
         StatusEntity status = statusController.findAll().stream().filter(att -> "preactive".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
         user.getRoles().add(role);

@@ -15,6 +15,11 @@ public class JwtResponse extends Response {
         this.accessTokenType = accessTokenType;
     }
 
+    public JwtResponse(ResponseCode ec, int userid) {
+        super(ec);
+        this.user.setUserid(userid);
+    }
+
     public String getRefreshToken() {
         return refreshToken;
     }
