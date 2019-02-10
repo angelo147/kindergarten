@@ -1,15 +1,9 @@
 package edu.kindergarten.registration.rest;
 
-import edu.kindergarten.registration.persistence.controllers.CalendarEventRepo;
-import edu.kindergarten.registration.persistence.controllers.KidController;
-import edu.kindergarten.registration.persistence.controllers.TokenController;
+import edu.kindergarten.registration.persistence.controllers.*;
 import edu.kindergarten.registration.messaging.Email;
 import edu.kindergarten.registration.messaging.MessageService;
-import edu.kindergarten.registration.persistence.controllers.UserController;
-import edu.kindergarten.registration.persistence.model.CalendarEventEntity;
-import edu.kindergarten.registration.persistence.model.KidprofileEntity;
-import edu.kindergarten.registration.persistence.model.ProfileEntity;
-import edu.kindergarten.registration.persistence.model.UserEntity;
+import edu.kindergarten.registration.persistence.model.*;
 import edu.kindergarten.registration.rest.requests.LoginRequest;
 import edu.kindergarten.registration.rest.requests.RegistrationRequest;
 import edu.kindergarten.registration.security.JWTUtil;
@@ -56,6 +50,16 @@ public class KinderGartenEndpoint {
     private UserController userController;
     @Inject
     private CalendarEventRepo eventRepo;
+    @Inject
+    private PortofolioController portofolioController;
+    @Inject
+    private ActivityController activityController;
+    @Inject
+    private CategoryController categoryController;
+    @Inject
+    private GoalController goalController;
+    @Inject
+    private CommentsController commentsController;
 
     @POST
     @Path("/register")
@@ -186,6 +190,88 @@ public class KinderGartenEndpoint {
         Response.ResponseBuilder response = Response.ok(file);
         //response.header("Content-Disposition", "attachment;filename=classes.jar");
         return response.build();
+    }
+
+    @GET
+    @Path("/category/all")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response getAllCategories() {
+        return Response.ok(categoryController.findAll()).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/comment")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response addComments(ActivityComment activityComment) {
+        Activity activity = activityController.findById(activityComment.getActivity().getActivityid());
+        Portofolio portofolio = portofolioController.findById(activityComment.getPortofolio().getPortofolioid());
+        activityComment.setActivity(activity);
+        activityComment.setPortofolio(portofolio);
+        commentsController.createComment(activityComment);
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @GET
+    @Path("/comment/{portofolioid}/{activityid}")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response addComments(@PathParam("portofolioid") int portofolioid, @PathParam("activityid") int activityid) {
+        ActivityComment comment = commentsController.findByportofolioandactivity(portofolioid, activityid);
+        comment.setPortofolio(null);
+        comment.setActivity(null);
+        return Response.ok(comment).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @PUT
+    @Path("/comment")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response updateComments(ActivityComment activityComment) {
+        ActivityComment comment = commentsController.findById(activityComment.getId());
+        comment.setComments(activityComment.getComments());
+        commentsController.createComment(comment);
+        comment.setPortofolio(null);
+        comment.setActivity(null);
+        return Response.ok(comment).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @GET
+    @Path("/portofolio/{kidid}")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response getNewPortofolio(@PathParam("kidid") int kidid) {
+        KidprofileEntity kid = kidController.findById(kidid);
+        Portofolio portofolio = new Portofolio();
+        portofolio.setKidprofileEntity(kid);
+        return Response.ok(portofolioController.createPortofolio(portofolio)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/activity")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response getNewActivity(Activity activity) {
+        List<Category> categories = activity.getCategories().stream().map(Category::getCategoryid).map(id -> categoryController.findById(id)).collect(Collectors.toList());
+        List<Goal> goals = activity.getGoals().stream().map(Goal::getGoalid).map(id -> goalController.findById(id)).collect(Collectors.toList());
+        activity.setCategories(categories);
+        activity.setGoals(goals);
+        Activity activity1 = activityController.createActivity(activity);
+        activity1.getCategories().forEach(category->category.setGoals(null));
+        return Response.ok(activity1).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    @POST
+    @Path("/portofolio/{portofolioid}/setactivites")
+    @RolesAllowed({"TEACHER", "SUPERVISOR"})
+    @ValidateUser
+    public Response setPortofolioActivities(@PathParam("portofolioid") int portofolioid, List<Activity> activities) {
+        Portofolio portofolio = portofolioController.findById(portofolioid);
+        List<Activity> collection = activities.stream().map(Activity::getActivityid).map(id -> activityController.findById(id)).collect(Collectors.toList());
+        portofolio.setActivities(collection);
+        portofolioController.createPortofolio(portofolio);
+        return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @POST

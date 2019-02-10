@@ -1163,6 +1163,731 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "new portofolio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/portofolio/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"portofolio",
+						"11"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "new portofolio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/portofolio/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"portofolio",
+								"11"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 16:35:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"portofolioid\": 1,\n    \"kidprofileEntity\": {\n        \"id\": 11,\n        \"fatherprofileid\": {\n            \"profileid\": 32,\n            \"name\": \"test\"\n        },\n        \"motherprofileid\": {\n            \"profileid\": 32,\n            \"name\": \"test\"\n        },\n        \"gurdianprofileid\": {\n            \"profileid\": 32,\n            \"name\": \"test\"\n        },\n        \"kidprofileid\": {\n            \"profileid\": 33,\n            \"name\": \"test\"\n        },\n        \"kidDocuments\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "new activity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"test\",\n\t\"description\":\"test\",\n\t\"context\":\"test\",\n\t\"categories\":[\n\t\t{\n\t\t\t\"categoryid\":1\n\t\t}\n\t],\n\t\"goals\":[\n\t\t{\n\t\t\t\"goalid\":1\n\t\t}\n\t\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/activity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"activity"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "new activity",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"test\",\n\t\"description\":\"test\",\n\t\"context\":\"test\",\n\t\"categories\":[\n\t\t{\n\t\t\t\"categoryid\":1\n\t\t}\n\t],\n\t\"goals\":[\n\t\t{\n\t\t\t\"goalid\":1\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/activity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"activity"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 17:24:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"activityid\": 7,\n    \"title\": \"test\",\n    \"categories\": [\n        {\n            \"categoryid\": 1,\n            \"name\": \"omilia\"\n        }\n    ],\n    \"description\": \"test\",\n    \"activityDate\": 1549819458452,\n    \"context\": \"test\",\n    \"goals\": [\n        {\n            \"goalid\": 1,\n            \"name\": \"kati\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "get all categories with goals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/category/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"category",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all categories with goals",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/category/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 17:30:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"categoryid\": 1,\n        \"name\": \"omilia\",\n        \"goals\": [\n            {\n                \"goalid\": 1,\n                \"name\": \"kati\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "set activities to portofolio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\"activityid\":1\n\t},\n\t{\n\t\"activityid\":6\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/portofolio/1/setactivites",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"portofolio",
+						"1",
+						"setactivites"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "set activities to portofolio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\"activityid\":1\n\t},\n\t{\n\t\"activityid\":6\n\t}\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/portofolio/1/setactivites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"portofolio",
+								"1",
+								"setactivites"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 17:43:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"responseCode\": 0,\n    \"responseMessage\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"activity\":{\n\t\"activityid\":1\n\t},\n\t\"portofolio\":{\n\t\t\"portofolioid\":1\n\t},\n\t\"comments\":\"Ti wraia ti kala\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comment/1/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comment",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get comments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comments/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments",
+								"1",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 18:44:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"comments\": \"Ti wraia ti kala\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NDkyMDQ0MDMsInJvbGUiOlsiU1VQRVJWSVNPUiJdLCJpc3MiOiJUUlVTVEVEX0NBTExFUiIsImV4cCI6MTU0OTIwNDcwMywiaWF0IjoxNTQ5MjA0NDAzLCJ1c2VySWQiOjMwLCJqdGkiOiJkYjI0MDMxNy0yM2ZhLTQ1Y2UtYmVjMi1jMmRlOTMyMGZkNzQifQ.DolaThWtlWv5XdTMcy-8_4CYCFoSTpoGM2tMVHzA5CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"comments\":\"Ti wraia ti kala!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update comment",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":1,\n\t\"comments\":\"Ti wraia ti kala!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Feb 2019 18:56:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"comments\": \"Ti wraia ti kala!!\"\n}"
+				}
+			]
 		}
 	]
 }
