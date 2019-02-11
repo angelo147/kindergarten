@@ -34,9 +34,9 @@ swarm:
       GOOGLE:
         smtp-server:
           username: dimoange@gmail.com
-          password: k@ss@r0cksnfuck!
+          password: k@ss@fucksnr0cks!
           tls: true
         from: dimoange@gmail.com
 notification:
-  hours: 16
-  minutes: 48
+  hours: 17
+  minutes: 27

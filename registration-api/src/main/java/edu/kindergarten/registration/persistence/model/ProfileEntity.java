@@ -14,6 +14,7 @@ public class ProfileEntity {
     private String email;
     private Date birthDate;
     private String religion;
+    private String notes;
 
     @Id
     @Column(name = "profileid")
@@ -95,6 +96,16 @@ public class ProfileEntity {
 
     public void setReligion(String religion) {
         this.religion = religion;
+    }
+
+    @Basic
+    @Column(name = "notes")
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     @Override
