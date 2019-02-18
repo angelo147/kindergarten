@@ -111,7 +111,7 @@ public class KinderGartenEndpoint {
     @RolesAllowed({"SUPERVISOR"})
     @ValidateUser
     public Response getUsers() {
-        return Response.ok(userController.findAll()).type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(new ResponseWrapper(ResponseCode.OK, userController.findAll(), null, null)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @GET
@@ -136,7 +136,7 @@ public class KinderGartenEndpoint {
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
     @ValidateUser
     public Response getUserEvent(@PathParam("userid") int userid) {
-        return Response.ok(eventRepo.findByUserId(userid)).type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(new ResponseWrapper(ResponseCode.OK, null, eventRepo.findByUserId(userid), null)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @POST
@@ -197,7 +197,7 @@ public class KinderGartenEndpoint {
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
     @ValidateUser
     public Response getAllCategories() {
-        return Response.ok(categoryController.findAll()).type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.ok(new ResponseWrapper(ResponseCode.OK, null, null,categoryController.findAll())).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
     @POST
