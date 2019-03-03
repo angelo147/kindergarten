@@ -54,6 +54,20 @@ public class PersistenceHelper {
         email.sendMessage(user.getProfileid().getEmail(), userController.createUser(user).getUserid());
     }
 
+    public UserEntity addUser(RegistrationRequest registrationRequest) {
+        UserEntity user = registrationRequest.getUser();
+        String password = user.getPassword();
+        String salt = PasswordUtils.getSalt(30);
+        user.setPassword(PasswordUtils.generateSecurePassword(password, salt));
+        user.setSalt(salt);
+        //user.getUserkids().addAll(registrationRequest.getKidprofiles());
+        RoleEntity role = roleController.findAll().stream().filter(att -> registrationRequest.getRole().toString().equalsIgnoreCase(att.getRole())).findFirst().orElse(null);
+        StatusEntity status = statusController.findAll().stream().filter(att -> "active".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
+        user.getRoles().add(role);
+        user.setStatusid(status);
+        return userController.createUser(user);
+    }
+
     public void updateDocument(int profileid, String title, byte[] file) {
         KidprofileEntity storedkidprofile = kidController.findById(profileid);
         KidDocument kidDocument = new KidDocument();

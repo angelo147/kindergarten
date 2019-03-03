@@ -2,9 +2,13 @@ package edu.kindergarten.registration.chat.security;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import edu.kindergarten.registration.persistence.controllers.UserController;
+import edu.kindergarten.registration.persistence.model.UserEntity;
+import edu.kindergarten.registration.utils.PasswordUtils;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -26,6 +30,9 @@ public class Authenticator {
 
     private static Map<String, String> users = new HashMap<>();
 
+    @Inject
+    private UserController userController;
+
     static {
         users.put("joe", "secret");
         users.put("jane", "secret");
@@ -41,7 +48,9 @@ public class Authenticator {
     }
 
     public boolean checkCredentials(String username, String password) {
-        return users.containsKey(username) && users.get(username).equals(password);
+        UserEntity user = userController.findActiveByUsername(username);
+        return user.getPassword().equalsIgnoreCase(PasswordUtils.generateSecurePassword(password, user.getSalt()));
+        //return users.containsKey(username) && users.get(username).equals(password);
     }
 
     public String issueAccessToken(String username) {

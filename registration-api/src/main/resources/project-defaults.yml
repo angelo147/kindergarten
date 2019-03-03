@@ -33,10 +33,10 @@ swarm:
     mail-sessions:
       GOOGLE:
         smtp-server:
-          username: 
-          password: 
+          username: test
+          password: test
           tls: true
-        from: dimoange@gmail.com
+        from: test@gmail.com
 notification:
   hours: 17
   minutes: 27

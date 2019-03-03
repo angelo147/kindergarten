@@ -106,6 +106,14 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    @POST
+    @Path("/user")
+    @RolesAllowed({"SUPERVISOR"})
+    @ValidateUser
+    public Response createUser(RegistrationRequest regRequest) {
+        return Response.ok(persistenceHelper.addUser(regRequest)).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
     @GET
     @Path("/user/all")
     @RolesAllowed({"SUPERVISOR"})
@@ -310,8 +318,7 @@ public class KinderGartenEndpoint {
 
                 String[] name = filename.split("=");
 
-                String finalFileName = name[1].trim().replaceAll("\"", "");
-                return finalFileName;
+                return name[1].trim().replaceAll("\"", "");
             }
         }
         return "unknown";

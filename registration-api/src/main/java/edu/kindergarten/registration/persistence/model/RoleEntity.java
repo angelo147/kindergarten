@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "role", schema = "kindergarten", catalog = "")
-@NamedQuery(name = "StatusEntity.findAll", query = "SELECT s FROM StatusEntity s")
+@NamedQuery(name = "RoleEntity.findAll", query = "SELECT r FROM RoleEntity r")
 public class RoleEntity {
     private int roleid;
     private String role;
