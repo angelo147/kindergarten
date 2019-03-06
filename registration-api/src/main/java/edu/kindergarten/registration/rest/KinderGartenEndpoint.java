@@ -61,6 +61,11 @@ public class KinderGartenEndpoint {
     @Inject
     private CommentsController commentsController;
 
+    /**
+     * Registration process for parent and children.
+     * @param regRequest RegistrationRequest has all mandatory information for the system
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/register")
     public Response register(RegistrationRequest regRequest) {
@@ -68,6 +73,12 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Assign kids to a teacher.
+     * @param ids List of KidProfile ids.
+     * @param userid Teacher id.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/kid/assign/{userid}")
     @RolesAllowed({"SUPERVISOR"})
@@ -80,6 +91,12 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Update user data. eg password
+     * Supervisor can update any users data.
+     * @param user User data.
+     * @return Returns the updated user.
+     */
     @PUT
     @Path("/user")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
@@ -88,6 +105,12 @@ public class KinderGartenEndpoint {
         return Response.ok(userController.update(user)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Update profile data.
+     * Supervisor can update any profile data.
+     * @param profile Profile user data.
+     * @return Returns OK if is successful.
+     */
     @PUT
     @Path("/user/profile")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
@@ -106,6 +129,12 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Create new user.
+     * Used only for supervisor to create teachers.
+     * @param regRequest Mandatory data of a user to be registered at the system.
+     * @return Returns created user.
+     */
     @POST
     @Path("/user")
     @RolesAllowed({"SUPERVISOR"})
@@ -114,6 +143,10 @@ public class KinderGartenEndpoint {
         return Response.ok(persistenceHelper.addUser(regRequest)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Get all system users info.
+     * @return Returns all users of the system.
+     */
     @GET
     @Path("/user/all")
     @RolesAllowed({"SUPERVISOR"})
@@ -122,6 +155,11 @@ public class KinderGartenEndpoint {
         return Response.ok(new ResponseWrapper(ResponseCode.OK, userController.findAll(), null, null)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Get specific user info by userid.
+     * @param userid Specific user id.
+     * @return Returns the user if found.
+     */
     @GET
     @Path("/user/{userid}")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
@@ -130,6 +168,11 @@ public class KinderGartenEndpoint {
         return Response.ok(userController.findById(userid)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Create new Calendar Event. Parent can arrange a meeting with a teacher for registration or teacher can call parents for a meeting.
+     * @param calendarEventEntity Calendar Event attributes.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/event")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
@@ -139,6 +182,11 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Get events for a specific user.
+     * @param userid Specific user id.
+     * @return Returns all user events.
+     */
     @GET
     @Path("/event/{userid}")
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
@@ -147,6 +195,11 @@ public class KinderGartenEndpoint {
         return Response.ok(new ResponseWrapper(ResponseCode.OK, null, eventRepo.findByUserId(userid), null)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Login to the system.
+     * @param login Username and password.
+     * @return Logged in user with authentication token.
+     */
     @POST
     @Path("/login")
     public Response login(LoginRequest login) {
@@ -208,6 +261,11 @@ public class KinderGartenEndpoint {
         return Response.ok(new ResponseWrapper(ResponseCode.OK, null, null,categoryController.findAll())).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Add comment at a kid's activity.
+     * @param activityComment Activity comment attributes.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/comment")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -221,6 +279,12 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Get a comment of a specific activity of a portofolio.
+     * @param portofolioid Portofolio id.
+     * @param activityid Activity id.
+     * @return Returns activity.
+     */
     @GET
     @Path("/comment/{portofolioid}/{activityid}")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -232,6 +296,11 @@ public class KinderGartenEndpoint {
         return Response.ok(comment).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Update comment.
+     * @param activityComment Activity comment attributes.
+     * @return Returns updated comment.
+     */
     @PUT
     @Path("/comment")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -245,6 +314,11 @@ public class KinderGartenEndpoint {
         return Response.ok(comment).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Generate a new portofolio id for a kid.
+     * @param kidid Kid profile id.
+     * @return Returns created portofolio.
+     */
     @GET
     @Path("/portofolio/{kidid}")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -256,6 +330,11 @@ public class KinderGartenEndpoint {
         return Response.ok(portofolioController.createPortofolio(portofolio)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Create a new activity.
+     * @param activity Activity attributes.
+     * @return Returnes created activity.
+     */
     @POST
     @Path("/activity")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -270,6 +349,12 @@ public class KinderGartenEndpoint {
         return Response.ok(activity1).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Set activites to a specific portofolio.
+     * @param portofolioid Portofolio id.
+     * @param activities List of Activity objects with ids.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/portofolio/{portofolioid}/setactivites")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
@@ -282,12 +367,18 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Upload files-documents. For example parent can upload required registration documents.
+     * @param input File.
+     * @param profileid Profile id.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/document/{profileid}")
     @RolesAllowed({"PARENT", "SUPERVISOR"})
     @ValidateUser
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(MultipartFormDataInput input, @PathParam("profileid") int profileid) throws IOException {
+    public Response uploadFile(MultipartFormDataInput input, @PathParam("profileid") int profileid) {
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         // Get file data to save
         List<InputPart> inputParts = uploadForm.get("attachment");
