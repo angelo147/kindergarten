@@ -63,7 +63,7 @@ public class KinderGartenEndpoint {
 
     /**
      * Registration process for parent and children.
-     * @param regRequest RegistrationRequest has all mandatory information for the system
+     * @param regRequest RegistrationRequest has all mandatory information for the system.
      * @return Returns OK if is successful.
      */
     @POST
@@ -92,7 +92,7 @@ public class KinderGartenEndpoint {
     }
 
     /**
-     * Update user data. eg password
+     * Update user data. eg password.
      * Supervisor can update any users data.
      * @param user User data.
      * @return Returns the updated user.
@@ -120,6 +120,12 @@ public class KinderGartenEndpoint {
         return Response.ok(new edu.kindergarten.registration.rest.Response(ResponseCode.OK)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 
+    /**
+     * Send email with attachment to multiple users(parents).
+     * @param emails List of user emails.
+     * @param type Name of the attachment.
+     * @return Returns OK if is successful.
+     */
     @POST
     @Path("/send/{type}")
     @RolesAllowed({"TEACHER", "SUPERVISOR"})
