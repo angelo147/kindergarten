@@ -92,6 +92,22 @@ public class KinderGartenEndpoint {
     }
 
     /**
+     * Get all kids.
+     * @return KidProfile entities.
+     */
+    @GET
+    @Path("/kid/all")
+    @RolesAllowed({"SUPERVISOR"})
+    //@ValidateUser
+    public Response getAllKids() {
+        List<KidprofileEntity> kids = kidController.findAll();
+        ResponseWrapper resp = new ResponseWrapper();
+        resp.setKids(kids);
+        resp.setErrorCode(ResponseCode.OK);
+        return Response.ok(resp).type(MediaType.APPLICATION_JSON_TYPE).build();
+    }
+
+    /**
      * Update user data. eg password.
      * Supervisor can update any users data.
      * @param user User data.

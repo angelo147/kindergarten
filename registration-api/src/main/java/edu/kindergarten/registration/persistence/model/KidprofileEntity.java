@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "kidprofile", schema = "kindergarten", catalog = "")
+@NamedQuery(name = "KidprofileEntity.findAll", query = "SELECT kp FROM KidprofileEntity kp")
 public class KidprofileEntity {
     private int id;
     private ProfileEntity fatherprofileid;
