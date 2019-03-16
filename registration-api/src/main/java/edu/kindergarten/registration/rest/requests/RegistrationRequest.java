@@ -1,6 +1,7 @@
 package edu.kindergarten.registration.rest.requests;
 
 import edu.kindergarten.registration.persistence.model.KidprofileEntity;
+import edu.kindergarten.registration.persistence.model.ProfileEntity;
 import edu.kindergarten.registration.persistence.model.UserEntity;
 import edu.kindergarten.registration.rest.Role;
 
@@ -11,6 +12,7 @@ public class RegistrationRequest {
     private List<KidprofileEntity> kidprofiles;
     private PrimaryProfile primaryProfile;
     private Role role;
+    private ProfileEntity profileEntity;
 
     public UserEntity getUser() {
         return user;
@@ -42,6 +44,14 @@ public class RegistrationRequest {
 
     public void setPrimaryProfile(PrimaryProfile primaryProfile) {
         this.primaryProfile = primaryProfile;
+    }
+
+    public ProfileEntity getProfileEntity() {
+        return profileEntity;
+    }
+
+    public void setProfileEntity(ProfileEntity profileEntity) {
+        this.profileEntity = profileEntity;
     }
 
     public enum PrimaryProfile

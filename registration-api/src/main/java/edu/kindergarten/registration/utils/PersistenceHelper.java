@@ -60,6 +60,7 @@ public class PersistenceHelper {
         String salt = PasswordUtils.getSalt(30);
         user.setPassword(PasswordUtils.generateSecurePassword(password, salt));
         user.setSalt(salt);
+        user.setProfileid(registrationRequest.getProfileEntity());
         //user.getUserkids().addAll(registrationRequest.getKidprofiles());
         RoleEntity role = roleController.findAll().stream().filter(att -> registrationRequest.getRole().toString().equalsIgnoreCase(att.getRole())).findFirst().orElse(null);
         StatusEntity status = statusController.findAll().stream().filter(att -> "active".equalsIgnoreCase(att.getStatus())).findFirst().orElse(null);
