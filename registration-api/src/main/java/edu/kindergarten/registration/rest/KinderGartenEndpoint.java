@@ -226,12 +226,15 @@ public class KinderGartenEndpoint {
     @Path("/login")
     public Response login(LoginRequest login) {
         UserEntity user = userController.findActiveByUsername(login.getUsername());
-        boolean passwordMatch = PasswordUtils.verifyUserPassword(login.getPassword(), user.getPassword(), user.getSalt());
-        if(passwordMatch) {
-            List<Role> userroles = user.getRoles().stream().map(role -> Role.valueOf(role.getRole())).collect(Collectors.toList());
-            JwtResponse resp = jwtUtil.generateJWT((long) user.getUserid(), userroles, null);
-            resp.setUser(user);
-            return Response.ok(resp).type(MediaType.APPLICATION_JSON_TYPE).build();
+        if(user!=null) {
+            boolean passwordMatch = PasswordUtils.verifyUserPassword(login.getPassword(), user.getPassword(), user.getSalt());
+            if (passwordMatch) {
+                List<Role> userroles = user.getRoles().stream().map(role -> Role.valueOf(role.getRole())).collect(Collectors.toList());
+                JwtResponse resp = jwtUtil.generateJWT((long) user.getUserid(), userroles, null);
+                resp.setUser(user);
+                return Response.ok(resp).type(MediaType.APPLICATION_JSON_TYPE).build();
+            }
+            return Response.status(Response.Status.UNAUTHORIZED).entity(new edu.kindergarten.registration.rest.Response(ResponseCode.LOGINFAILED)).type(MediaType.APPLICATION_JSON_TYPE).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(new edu.kindergarten.registration.rest.Response(ResponseCode.LOGINFAILED)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
