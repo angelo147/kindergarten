@@ -98,11 +98,14 @@ public class KinderGartenEndpoint {
     @GET
     @Path("/kid/all")
     @RolesAllowed({"SUPERVISOR"})
-    //@ValidateUser
-    public Response getAllKids() {
+    @ValidateUser
+    public Response getAllKids(@QueryParam("userfilterid") int userid) {
         List<KidprofileEntity> kids = kidController.findAll();
+        List<KidprofileEntity> collect = userid!=0
+                ? kids.stream().filter(kid -> kid.getUsers().stream().noneMatch(u -> u.getUserid() == userid)).collect(Collectors.toList())
+                : kids;
         ResponseWrapper resp = new ResponseWrapper();
-        resp.setKids(kids);
+        resp.setKids(collect);
         resp.setErrorCode(ResponseCode.OK);
         return Response.ok(resp).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
@@ -118,6 +121,12 @@ public class KinderGartenEndpoint {
     @RolesAllowed({"PARENT", "TEACHER", "SUPERVISOR"})
     @ValidateUser
     public Response updateUser(UserEntity user) {
+        if(user.getPassword()!=null) {
+            String password = user.getPassword();
+            String salt = PasswordUtils.getSalt(30);
+            user.setPassword(PasswordUtils.generateSecurePassword(password, salt));
+            user.setSalt(salt);
+        }
         return Response.ok(userController.update(user)).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 

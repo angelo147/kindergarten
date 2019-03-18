@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "kidprofile", schema = "kindergarten", catalog = "")
@@ -17,7 +18,7 @@ public class KidprofileEntity {
     private ProfileEntity kidprofileid;
     private List<KidDocument> kidDocuments;
     @JsonIgnore
-    private List<UserEntity> users;
+    private Set<UserEntity> users;
 
     @Id
     @Column(name = "id")
@@ -99,12 +100,12 @@ public class KidprofileEntity {
         this.kidDocuments = kidDocuments;
     }
 
-    @ManyToMany(mappedBy = "userkids")
-    public List<UserEntity> getUsers() {
+    @ManyToMany(mappedBy = "userkids", fetch = FetchType.EAGER)
+    public Set<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(List<UserEntity> users) {
+    public void setUsers(Set<UserEntity> users) {
         this.users = users;
     }
 }

@@ -41,7 +41,7 @@ public class EmailServiceImpl implements MessageService {
 	public Response sendMessage(String email, int userid) {
 		try {
 			Document doc = Jsoup.parse(templateController.findByType("REGISTRATION").getHtml());
-			String url = "http:localhost:8080?token="+tokenUtil.generateToken(email, userid);
+			String url = "http://localhost:4200/register-validation?token="+tokenUtil.generateToken(email, userid);
 			doc.getElementById("tokenurl").attr("href", url);
 			log.info("Invoking SendEmail" + " with email address " + email);
 			Message message = new MimeMessage(session);
